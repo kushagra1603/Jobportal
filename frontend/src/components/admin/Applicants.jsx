@@ -24,7 +24,6 @@ function Applicants() {
       } catch (error) {
         console.log(error);
       }
-      console.log("applicants");
     };
     fetchAllApplicants();
   }, []);

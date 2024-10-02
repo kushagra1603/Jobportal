@@ -73,7 +73,7 @@ function UpdateProfileDialog({ open, setOpen }) {
     finally{
       setLoading(false);
     }
-    console.log(user);
+
     setOpen(false);
   };
 
