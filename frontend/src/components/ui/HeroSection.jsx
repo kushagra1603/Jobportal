@@ -4,6 +4,7 @@ import { Search } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { setSearchedQuery } from "@/redux/jobSlice";
 import { useNavigate } from "react-router-dom";
+import { useScroll, motion, useTransform } from "framer-motion";
 
 function HeroSection() {
   const [query, setQuery] = useState("");
@@ -13,6 +14,8 @@ function HeroSection() {
     dispatch(setSearchedQuery(query));
     navigate("/browse");
   };
+  const { scrollYVelocity } = useScroll();
+  const moveX = useTransform(scrollYVelocity, [-1000, 1000], [-500, 500]);
   return (
     <div className="text-center">
       <div className="flex flex-col gap-5 my-10">
@@ -23,7 +26,17 @@ function HeroSection() {
           Search, Apply & <br /> Get Your
           <span className="text-[#6A38C2]">Dream Jobs</span>
         </h1>
-        <p>Lorem ipsum dolor sit amet.</p>
+        <motion.div style={{ height: "200vh", padding: "50px" }}>
+          <motion.div
+            style={{
+              width: "100px",
+              height: "100px",
+              backgroundColor: "blue",
+              x: moveX, // Animating in the x-direction
+            }}
+          />
+          <p>Lorem ipsum dolor sit amet.</p>
+        </motion.div>
         <div className="flex w-[40%] shadow-lg border border-gray-200 pl-3 rounded-full items-center gap-4 mx-auto">
           <input
             type="text"
